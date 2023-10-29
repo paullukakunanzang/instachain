@@ -1,7 +1,9 @@
+import { FormContainer } from "../components";
+
 const Login = () => {
     return (
-        <div>
-            <h4 className="text-white">Login Page</h4>
+        <div className="grid grid-cols-1">
+            <FormContainer page="Login"/>
         </div>
       );
 }

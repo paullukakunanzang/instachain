@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 
 import { Main } from './layouts';
-import { Dashboard, Login, Signup } from './pages';
+import { Dashboard, HomePage, Login, Signup } from './pages';
 
 function App() {
 
@@ -18,6 +18,10 @@ function App() {
         {
           index: true,
           element: <Dashboard/>
+        },
+        {
+          path: `/home`,
+          element: <HomePage/>
         },
 
         {

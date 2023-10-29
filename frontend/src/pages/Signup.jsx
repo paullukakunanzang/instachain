@@ -1,7 +1,9 @@
+import { FormContainer } from "../components";
+
 const Signup = () => {
     return (
-        <div>
-            <h4 className="text-white">Signup</h4>
+        <div className="flex flex-col flex-1">
+           <FormContainer/>
         </div>
      );
 }
