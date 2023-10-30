@@ -1,9 +1,10 @@
 const express = require('express'),
-    router = express.Router()
+    router = express.Router(),
+    controller = require('../controllers/user')
 
 router.route('/')
-    .get()
-    .post()
+    .get(controller.getAllUsers)
+    .post(controller.signup)
 
 router.route('/:id')
     .get()
