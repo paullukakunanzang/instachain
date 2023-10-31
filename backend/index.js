@@ -5,9 +5,9 @@ const express = require('express'),
     model = require('./models'),
     userRoute = require('./routes/user')
 
-app.use(express.urlencoded({extended: true}))
+app.use(cors())
+app.use(express.urlencoded({extended: false}))
 app.use(express.json())
-app.use(cors)
 
 app.use((req,res,next) =>{
     console.log(req.path, req.method)
