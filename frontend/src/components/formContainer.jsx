@@ -88,7 +88,7 @@ const FormContainer = ({page="signup"}) => {
 
                 <Link className="text-right text-blue-400" to={``}>forgot password ?</Link>
 
-                <button className="p-2 bg-orange-500 hover:bg-opacity-50">
+                <button class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 border-2 border-transparent rounded-md text-white p-2">
                     {page}
                 </button>
 
