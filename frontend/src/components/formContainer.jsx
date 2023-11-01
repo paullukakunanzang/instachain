@@ -1,21 +1,57 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "./Logo";
 import {HiEnvelope, HiLockClosed} from 'react-icons/hi2';
 import {FaXTwitter, FaDiscord} from 'react-icons/fa6'
 import { useState } from "react";
+import { useSignup } from "../hooks/useSignup";
+import { useLogin } from "../hooks/useLogin";
+import Loader from "./Loader/Loader";
 
 const FormContainer = ({page="signup"}) => {
 
-    const [email, setEmail] = useState()
-    const [password, setPassword] = useState()
+    const {signup, isLoading: signupLoading, error: signupError} = useSignup()
+    const {login, isLoading: loginLoading, error: loadingError} = useLogin()
+    const Navigate = useNavigate()
+
+    const [formData, setFormData] = useState({
+        email: '',
+        password: ''
+    })
+
+    const inputChange = (e) => {
+        setFormData((prevState) => ({
+            ...prevState, [e.target.name]: e.target.value
+        }))
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        const {email, password} = formData
+        
+        if(page == 'signup') {
+            await signup(email, password)
+        }
+
+        if(page == 'login') {
+            await login(email, password)
+        }
+    }
     
     return ( 
         <div className="flex text-white flex-col md:w-4/12 w-full m-auto rounded-lg bg-[#18203A] bg-opacity-90 md:p-5 p-3">
-            <form className="flex flex-col md:gap-y-6 gap-y-4" action="">
+            <form className="flex flex-col md:gap-y-6 gap-y-4" onSubmit={handleSubmit}>
                 <div className="flex justify-center">
                     <Logo text={false}/>
                 </div>
                 <h4 className="text-[20px] text-center text-orange-500 font-bold">{page}</h4>
+                {
+                    signupError && (
+                        <div className="p-3 bg-red-300 border rounded-md border-red-400 text-red-300">
+                            <small>{signupError.message}</small>
+                        </div>
+                    )
+                }
+               
                 <span className="font-light text-xs">
                     Hi 👋, its easy getting started lets help you experience the magic 
                 </span>
@@ -27,6 +63,9 @@ const FormContainer = ({page="signup"}) => {
                             type="email"
                             placeholder="eg. example@gmail.com"
                             className="placeholder-slate-300 absolute px-8 bg-[#18203A] opacity-50 w-full"
+                            name="email"
+                            value={formData.email}
+                            onChange={inputChange}
                         />
                     </div>
                     
@@ -40,6 +79,9 @@ const FormContainer = ({page="signup"}) => {
                             type="password"
                             placeholder="strong password"
                             className="placeholder-slate-300 absolute px-8 bg-[#18203A] opacity-50 w-full"
+                            name="password"
+                            value={formData.password}
+                            onChange={inputChange}
                         />
                     </div>        
                 </div>
@@ -47,7 +89,7 @@ const FormContainer = ({page="signup"}) => {
                 <Link className="text-right text-blue-400" to={``}>forgot password ?</Link>
 
                 <button className="p-2 bg-orange-500 hover:bg-opacity-50">
-                    login
+                    {page}
                 </button>
 
                 <hr />
@@ -61,6 +103,7 @@ const FormContainer = ({page="signup"}) => {
                     <FaDiscord/>
                 </div>
             </form>
+            {!signupError && loginLoading || !signupError && signupLoading && <Loader/>}
         </div>
      );
 }
