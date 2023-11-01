@@ -1,5 +1,5 @@
-import { TransactionPanel } from '../components';
-import {} from 'react-icons/hi2'
+import { LineChart, TransactionPanel } from '../components';
+import {HiArrowTrendingUp} from 'react-icons/hi2'
 
 const Dashboard = () => {
     return (
@@ -17,15 +17,19 @@ const Dashboard = () => {
                 </div>
 
                 {/* second component */}
-                <div className='p-5 rounded bg-[#18203A] h-72'>
+                <div className='md:p-5 p-2 flex flex-col rounded bg-[#18203A] h-72 gap-y-2'>
                     <div className='flex justify-between'>
-                        <span className='p-2 rounded-md bg-slate-300'>
+                        <span className='p-1 text-xs rounded-md bg-black text-slate-100'>
                             <h4>Painting the picture</h4>
                         </span>
                         <span className='p-2 rounded-full bg-white'>
-
+                            <HiArrowTrendingUp/>
                         </span>
                     </div>
+                    
+                    <LineChart/>
+                    
+                    
                 </div>
 
                 {/* Third component */}

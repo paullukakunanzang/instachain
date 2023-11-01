@@ -25,7 +25,7 @@ const TransactionPanel = () => {
                     <button className='p-2 text-white bg-[#18203A] rounded-md font-bold'>Transfer</button>
                 </div>
 
-                <div className='p-3 bg-black rounded-lg text-white border-yellow-700 border-2'>
+                <div className='p-3 bg-black rounded-lg text-white'>
                     <span>
                         <h4>Converter</h4>
                     </span>

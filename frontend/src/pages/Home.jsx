@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import gif from '../assets/bitcoin1.png'
 const HomePage = () => {
     return ( 
@@ -10,9 +11,9 @@ const HomePage = () => {
                 {/* <button className="p-2 bg-orange-500 m-auto text-white md:w-4/12 shadow-md shadow-orange-200">
                     Get Started
                 </button> */}
-                <button class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 border-2 border-transparent w-6/12 m-auto rounded-md text-white p-2">
+                <Link to={'/'} class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 border-2 border-transparent w-6/12 m-auto rounded-md text-center text-white p-2">
                     Get started
-                </button>
+                </Link>
             </div>
             {/* <div className='flex justify-center'>
                 <img src={gif}/>
