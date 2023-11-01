@@ -3,7 +3,8 @@ const express = require('express'),
     app = express(),
     cors = require('cors'),
     model = require('./models'),
-    userRoute = require('./routes/user')
+    userRoute = require('./routes/user'),
+    transactionRoute = require('./routes/transaction')
 
 app.use(cors())
 app.use(express.urlencoded({extended: false}))
@@ -19,6 +20,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/v1/users', userRoute)
+app.use('/api/v1/transactions', transactionRoute)
 
 app.listen( process.env.PORT , () => {
     console.log(`tradingApp server started on port: ${process.env.PORT}`)

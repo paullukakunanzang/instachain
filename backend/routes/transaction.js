@@ -1,16 +1,16 @@
 const express = require('express'),
-    router = express.Router()
+    router = express.Router(),
+    controllers = require('../controllers/transaction') 
 
 router.route('/')
-    .get()
-    .post()
+    .get(controllers.getAllTransactions)
+    .post(controllers.createTransaction)
 
 router.route('/:id')
+    .get(controllers.getTransactionById)
 
 router.route('/:userId')
-    .get()
+    .get(controllers.getTransactionsByUserId)
 
-router.route(`/:userId/:id`)
-    .get()
 
-router.route('/id')
+module.exports = router;
