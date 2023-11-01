@@ -1,4 +1,5 @@
 require('dotenv').config()
+const Transactions = require('../models/transactions')
 const User = require('../models/user'),
     jwt = require('jsonwebtoken')
 
@@ -42,6 +43,29 @@ const User = require('../models/user'),
             const token = createToken(user._id)
     
             return res.status(200).json({message: 'success', data: user, token})        
+        } catch (error) {
+            return res.status(400).json({message: 'error', error: error.message})
+        }
+    }
+
+    exports.updateUserBalance = async (req, res) => {
+        try {
+            
+            const {id} = req.params
+            const {amount} = req.body
+
+            const user = await User.findById(id)
+
+            if(!user) {
+                throw new Error('user could not be found')
+            }
+
+            let newAmount = user.accountBalance + amount
+
+            const updatedUser = await User.findByIdAndUpdate(id, {accountBalance: newAmount})
+
+            return res.status(200).json({message: 'success', data: updatedUser})
+
         } catch (error) {
             return res.status(400).json({message: 'error', error: error.message})
         }

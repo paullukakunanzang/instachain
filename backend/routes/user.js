@@ -9,10 +9,7 @@ router.route('/')
 router.route('/:id')
     .get()
 
-router.route('/:userId')
-    .get()
-
-router.route(`/:userId/:id`)
-    .get()
+router.route('/:id/update-balance')
+    .patch(controller.updateUserBalance)
 
 module.exports = router;
