@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 
 import { Main } from './layouts';
-import { Dashboard, HomePage, Login, Signup } from './pages';
+import { Dashboard, HomePage, Login, Signup, Verification } from './pages';
 import { useAuthContext } from './hooks/useAuthContext';
 
 function App() {
@@ -36,6 +36,11 @@ function App() {
         {
           path: `/login`,
           element: !user ? <Login/> : <Navigate to={`/`}/>
+        },
+
+        {
+          path: `/verification`,
+          element: !user ? <Verification/> : <Navigate to={`/`}/>
         }
       ]
     }

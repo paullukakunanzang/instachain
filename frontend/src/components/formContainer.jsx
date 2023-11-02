@@ -10,7 +10,7 @@ import Loader from "./Loader/Loader";
 const FormContainer = ({page="signup"}) => {
 
     const {signup, isLoading: signupLoading, error: signupError} = useSignup()
-    const {login, isLoading: loginLoading, error: loadingError} = useLogin()
+    const {login, isLoading: loginLoading, error: loginError} = useLogin()
     const Navigate = useNavigate()
 
     const [formData, setFormData] = useState({
@@ -33,7 +33,7 @@ const FormContainer = ({page="signup"}) => {
             Navigate(`/`)
         }
 
-        if(page == 'login') {
+        else if(page == 'Login') {
             await login(email, password)
         }
     }
@@ -46,10 +46,10 @@ const FormContainer = ({page="signup"}) => {
                 </div>
                 <h4 className="text-[20px] text-center text-orange-500 font-bold">{page}</h4>
                 {
-                    signupError && (
+                    signupError || loginError && (
                         <div className="p-2 flex gap-x-2 bg-red-200 border items-center rounded-md border-red-400 text-red-800">
                             <HiOutlineExclamationTriangle/>
-                            <small>{signupError}</small>
+                            <small>{signupError || loginError}</small>
                         </div>
                     )
                 }
@@ -105,7 +105,7 @@ const FormContainer = ({page="signup"}) => {
                     <FaDiscord/>
                 </div>
             </form>
-            {!signupError && loginLoading || !signupError && signupLoading && <Loader/>}
+            {!loginError && loginLoading && <Loader/>  || !signupError && signupLoading && <Loader/>}
         </div>
      );
 }
