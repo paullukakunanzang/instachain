@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "./Logo";
-import {HiEnvelope, HiLockClosed} from 'react-icons/hi2';
+import {HiEnvelope, HiLockClosed, HiOutlineExclamationTriangle} from 'react-icons/hi2';
 import {FaXTwitter, FaDiscord} from 'react-icons/fa6'
 import { useState } from "react";
 import { useSignup } from "../hooks/useSignup";
@@ -30,6 +30,7 @@ const FormContainer = ({page="signup"}) => {
         
         if(page == 'signup') {
             await signup(email, password)
+            Navigate(`/`)
         }
 
         if(page == 'login') {
@@ -46,8 +47,9 @@ const FormContainer = ({page="signup"}) => {
                 <h4 className="text-[20px] text-center text-orange-500 font-bold">{page}</h4>
                 {
                     signupError && (
-                        <div className="p-3 bg-red-300 border rounded-md border-red-400 text-red-300">
-                            <small>{signupError.message}</small>
+                        <div className="p-2 flex gap-x-2 bg-red-200 border items-center rounded-md border-red-400 text-red-800">
+                            <HiOutlineExclamationTriangle/>
+                            <small>{signupError}</small>
                         </div>
                     )
                 }

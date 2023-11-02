@@ -11,7 +11,7 @@ export const useLogin = () => {
         setIsLoading(true)
         setError(null)
 
-        const response = await fetch(``, {
+        const response = await fetch(`https://trading-api-orcin.vercel.app/api/v1/users/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

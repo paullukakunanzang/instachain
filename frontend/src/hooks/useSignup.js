@@ -12,7 +12,7 @@ export const useSignup = () => {
         setIsLoading(true)
         setError(null)
 
-        const response = await fetch(`http://localhost:6500/api/v1/users`, {
+        const response = await fetch(`https://trading-api-orcin.vercel.app/api/v1/users`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

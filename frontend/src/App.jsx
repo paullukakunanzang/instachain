@@ -2,13 +2,17 @@ import { useState } from 'react';
 
 import {
   createBrowserRouter,
+  Navigate,
   RouterProvider
 } from 'react-router-dom';
 
 import { Main } from './layouts';
 import { Dashboard, HomePage, Login, Signup } from './pages';
+import { useAuthContext } from './hooks/useAuthContext';
 
 function App() {
+
+  const {user} = useAuthContext()
 
   const router = createBrowserRouter([
     {
@@ -17,21 +21,21 @@ function App() {
       children: [
         {
           index: true,
-          element: <Dashboard/>
+          element: user ? <Dashboard/> : <Navigate to={`/login`}/>
         },
         {
           path: `/home`,
-          element: <HomePage/>
+          element: !user ? <HomePage/> : <Navigate to={`/`}/>
         },
 
         {
           path: `/signup`,
-          element: <Signup/>
+          element: !user ? <Signup/> : <Navigate to={`/`}/>
         },
 
         {
           path: `/login`,
-          element: <Login/>
+          element: !user ? <Login/> : <Navigate to={`/`}/>
         }
       ]
     }

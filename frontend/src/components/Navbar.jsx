@@ -3,10 +3,12 @@ import Logo from "./Logo";
 import {HiUser} from 'react-icons/hi2';
 import { useState } from "react";
 import FullScreenModal from "./fullScreenModal";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 
-const Navbar = ({user=true}) => {
+const Navbar = () => {
     
+    const {user} = useAuthContext()
     const location = useLocation()
     const [modal, setModal] = useState(false)
     
@@ -19,7 +21,7 @@ const Navbar = ({user=true}) => {
             </div>
 
             <div className="flex justify-end">
-                {!user ?  
+                {user ?  
                     <div className="flex gap-x-4 items-center">
                         <button
                             class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 border-2 border-transparent rounded-md text-white p-2"
