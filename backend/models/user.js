@@ -1,15 +1,20 @@
+require('dotenv').config()
 const mongoose = require('mongoose'),
-    bcrypt = require('bcryptjs')
+    bcrypt = require('bcryptjs'),
+    nodemailer = require('nodemailer'),
+    smtpTransport = require('nodemailer-smtp-transport')
 
 const userSchema = new mongoose.Schema({
 
     email: {type: String, unique: true },
     password: {type: String},
     accountBalance: {type: Number, default: 0},
-    isAdmin: {type: Boolean, default: false}
+    verificationCode: {type: Number},
+    isAdmin: {type: Boolean, default: false},
+    isVerified: {type: Boolean, default: false}
 })
 
-userSchema.statics.signup = async function (email, password) {
+userSchema.statics.signup = async function (email, password, verificationCode) {
 
     if(!email || !password) {
         throw Error('All fields are required')
@@ -29,7 +34,7 @@ userSchema.statics.signup = async function (email, password) {
 
     const hash = await bcrypt.hash(password, salt)
 
-    const user = await this.create({email, password: hash})
+    const user = await this.create({email, password: hash, verificationCode})
 
     return user
 }
@@ -56,6 +61,31 @@ userSchema.statics.login = async function (email, password) {
 
    return user
 
+}
+
+// send Alumni and email function
+userSchema.statics.sendEmail = async function(email, subject, message) {
+    let transport = nodemailer.createTransport({
+        host: 'mail.privateemail.com',
+        secure: false,
+        port: 465,
+        auth: {
+            user: process.env.EMAIL_USERNAME,
+            pass: process.env.EMAIL_PASSWORD
+        },
+        debug: true 
+    })
+
+    const info = await transport.sendMail({
+        from: process.env.EMAIL_USERNAME,
+        to: email,
+        subject: subject,
+        html: message
+
+    }, (err, sent) => {
+        err ? console.log('error send email', err) : console.log('succesfully sent', sent)
+
+    })
 }
 
 const User = mongoose.model('user', userSchema)

@@ -6,6 +6,18 @@ const User = require('../models/user'),
     const createToken = (_id) => {
         return jwt.sign({_id: _id}, process.env.SECRET_KEY, {expiresIn: '1d'})
     }
+
+    const generateRandomNumber = () => {
+        const length = 5;
+    
+        // Generate random number with a specified length
+        const randomNumber = Math.floor(Math.random() * 10 ** length);
+    
+        // Pad the number with leading zeros to ensure it has exactly five digits
+        const formattedNumber = randomNumber.toString().padStart(length, "0");
+    
+        return formattedNumber;
+    }
     
     exports.getAllUsers = async (req, res) => {
         try {
@@ -22,9 +34,15 @@ const User = require('../models/user'),
         try {
             const {email, password} = req.body 
             
-            const user = await User.signup(email, password)
+            // generate verification code
+            let verificationCode = await generateRandomNumber()
+            
+            const user = await User.signup(email, password, verificationCode)
     
             const token = createToken(user._id)
+
+            // send welcome email
+             await User.sendEmail(email, 'Welcome to iinstantchain', `verfication code: ${verificationCode}`)
     
             return res.status(201).json({message: 'success', data: user, token})
     
