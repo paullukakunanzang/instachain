@@ -53,6 +53,8 @@ const Verification = () => {
       }
   };
 
+  console.log(user)
+
     return ( 
         <div className='flex flex-col md:w-1/2 m-auto flex-1 items-center gap-y-[50px] p-5'>
         <h4 className='font-bold text-slate-100 text-[20px] md:text-[30px]'>Enter Verification token</h4>
@@ -76,7 +78,7 @@ const Verification = () => {
 
         <div className='flex flex-col'>
             <p className='text-center text-slate-100'>Please Insert the 5 digit token sent to your email</p>
-            <p className='text-[#6B3FA0] text-center'>{user.data.email}</p>
+            <p className='text-[#6B3FA0] text-center'>{user !== null && user.data.email}</p>
         </div>
 
     </div>

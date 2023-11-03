@@ -50,7 +50,7 @@ const Navbar = () => {
                     </div>
                 }
             </div>
-            {modal && <FullScreenModal/>}
+            {modal && <FullScreenModal close={()=>{setModal(false)}}/>}
         </div>
      );
 }
