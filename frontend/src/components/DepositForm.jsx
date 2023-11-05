@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useFetch from "../hooks/useFetch";
 import Loader from "./Loader/Loader";
+import { toast } from "react-toastify";
 
 const DepositForm = () => {
 
@@ -36,12 +37,12 @@ const DepositForm = () => {
 
         if(!response.ok){
             setIsPending(false)
-            console.log(json)
+            toast.error(json.error)
         }
 
         if(response.ok){
             setIsPending(false)
-            console.log(json)
+            toast.success(json.message)
         }
 
     }
