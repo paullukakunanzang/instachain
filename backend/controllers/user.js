@@ -71,7 +71,7 @@ const User = require('../models/user'),
             
             const {user, amount} = req.body
 
-            const foundUser = await User.findById({id: user})
+            const foundUser = await User.findOne({email: user})
 
             if(!foundUser) {
                 throw new Error('user could not be found')
