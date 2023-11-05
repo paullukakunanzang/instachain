@@ -27,7 +27,7 @@ const TransactionPanel = ({transactions=false}) => {
                 <div className='p-3 bg-black rounded-md grid grid-cols-3 text-xs gap-x-2'>
                     <button onClick={()=>{setModal(true)}} className='p-2 text-white rounded-md font-bold bg-[#18203A]'>Deposit</button>
                     <button className='p-2 text-white bg-[#18203A] rounded-md font-bold'>withdraw</button>
-                    <button className='p-2 text-white bg-[#18203A] rounded-md font-bold'>Transfer</button>
+                    <button className='p-2 text-white bg-[#18203A] rounded-md font-bold'>Invest</button>
                 </div>
 
                 <div className='p-3 bg-black rounded-lg text-white'>
