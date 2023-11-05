@@ -92,7 +92,7 @@ const User = require('../models/user'),
 
             let newAmount = Number(foundUser.accountBalance) + Number(amount)
 
-            const updatedUser = await User.findByIdAndUpdate(foundUser.id, {accountBalance: newAmount})
+            const updatedUser = await User.findOneAndUpdate({email: user}, {accountBalance: newAmount})
 
             return res.status(200).json({message: 'success', data: updatedUser})
 
