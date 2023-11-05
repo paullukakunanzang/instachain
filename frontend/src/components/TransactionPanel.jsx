@@ -1,11 +1,15 @@
-import {HiInformationCircle,  HiOutlineDocumentPlus} from 'react-icons/hi2';
+import {HiOutlineDocumentPlus} from 'react-icons/hi2';
 import img from '../assets/bitcoin1.png';
 import { useState } from 'react';
 import FullScreenModal from './fullScreenModal';
+import { useAuthContext } from '../hooks/useAuthContext';
+import DepositForm from './DepositForm';
 
 const TransactionPanel = ({transactions=false}) => {
 
+    const {user} = useAuthContext()
     const [modal, setModal] = useState(false)
+    const [depositModal, setDepositModal] = useState(false)
 
     return ( 
         <div className="flex flex-col w-full">
@@ -20,13 +24,13 @@ const TransactionPanel = ({transactions=false}) => {
                     
                     <span className='font-bold my-auto  mx-auto flex flex-col gap-y-2'>
                         <small className='mx-auto text-white'>Total Bal.</small>    
-                        <h4 className='text-[20px] font-bold gradient-text'>$ 4,500</h4>
+                        {user && <h4 className='text-[20px] font-bold gradient-text'>$ {user.data.accountBalance}</h4>}
                     </span>
                 </div>
 
-                <div className='p-3 bg-black rounded-md grid grid-cols-3 text-xs gap-x-2'>
-                    <button onClick={()=>{setModal(true)}} className='p-2 text-white rounded-md font-bold bg-[#18203A]'>Deposit</button>
-                    <button className='p-2 text-white bg-[#18203A] rounded-md font-bold'>withdraw</button>
+                <div className='p-3 bg-black rounded-md flex text-xs gap-x-2'>
+                    {user && !user.data.isAdmin && <button onClick={()=>{setDepositModal(true)}} className='p-2 text-white rounded-md font-bold bg-[#18203A]'>Deposit</button>}
+                    <button onClick={()=>{setModal(true)}} className='p-2 text-white bg-[#18203A] rounded-md font-bold'>withdraw</button>
                     <button className='p-2 text-white bg-[#18203A] rounded-md font-bold'>Invest</button>
                 </div>
 
@@ -48,6 +52,7 @@ const TransactionPanel = ({transactions=false}) => {
                 </div>
             </div>    
               {modal && <FullScreenModal close={()=>{setModal(false)}}/>}  
+              {depositModal && <FullScreenModal children={<DepositForm/>} close={()=>{setDepositModal(false)}}/>}  
         </div>
      );
 }

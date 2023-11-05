@@ -5,3 +5,4 @@ export {default as FullScreenModal} from './fullScreenModal';
 export {default as Loader} from './Loader/Loader';
 export {default as TransactionPanel} from './TransactionPanel';
 export {default as LineChart} from './LineChart';
+export {default as DepositForm} from './DepositForm';
