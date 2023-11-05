@@ -1,22 +1,53 @@
+import { useState } from "react";
+import useFetch from "../hooks/useFetch";
+
 const DepositForm = () => {
+
+    const {data} = useFetch(`https://trading-api-orcin.vercel.app/api/v1/users`)
+
+    const [formData, setFormData] = useState({
+        user: '',
+        amount: '',
+    })
+
+    const inputChange = (e) => {
+        setFormData((prevState) => ({
+            ...prevState, [e.target.name]: e.target.value
+        }))
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        console.log(formData)
+    }
+
     return ( 
         <div className="grid grid-cols-1">
-            <form className="flex flex-col gap-y-4 items-center">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-y-4 items-center">
                 <select 
-                    name="" 
+                    name="user" 
                     id=""
                     className="w-full bg-[#18203A] text-slate-300"
+                    value={formData.user}
+                    onChange={inputChange}
                 >
                     <option>select user</option>
+                    {data && data.data.map((user)=>(
+                        <option key={user._id} value={user._id}>{user.email} (${user.accountBalance})</option>
+                    ))}
+                    
                 </select>
 
                 <input
                     type="number"
                     className="w-full bg-[#18203A] text-slate-300"
                     placeholder="eg. $500"
+                    name="amount"
+                    value={formData.amount}
+                    onChange={inputChange}
                 />
 
-                <button className="p-2 bg-blue-500 w-full text-white shadow shadow-white">
+                <button type="submit" className="p-2 bg-blue-500 w-full text-white shadow shadow-white">
                     credit
                 </button>
             </form>

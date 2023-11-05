@@ -69,18 +69,17 @@ const User = require('../models/user'),
     exports.updateUserBalance = async (req, res) => {
         try {
             
-            const {id} = req.params
-            const {amount} = req.body
+            const {user, amount} = req.body
 
-            const user = await User.findById(id)
+            const foundUser = await User.findById({id: user})
 
-            if(!user) {
+            if(!foundUser) {
                 throw new Error('user could not be found')
             }
 
-            let newAmount = user.accountBalance + amount
+            let newAmount = foundUser.accountBalance + amount
 
-            const updatedUser = await User.findByIdAndUpdate(id, {accountBalance: newAmount})
+            const updatedUser = await User.findByIdAndUpdate(foundUser._id, {accountBalance: newAmount})
 
             return res.status(200).json({message: 'success', data: updatedUser})
 
