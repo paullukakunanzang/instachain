@@ -1,9 +1,12 @@
 import { useState } from "react";
 import useFetch from "../hooks/useFetch";
+import Loader from "./Loader/Loader";
 
 const DepositForm = () => {
 
     const {data} = useFetch(`https://trading-api-orcin.vercel.app/api/v1/users`)
+    const [isPending, setIsPending] = useState(false)
+
 
     const [formData, setFormData] = useState({
         user: '',
@@ -18,7 +21,29 @@ const DepositForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(formData)
+
+        setIsPending(true)
+
+        const response = await fetch(`https://trading-api-orcin.vercel.app/api/v1/users/update-balance`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+
+        const json = await response.json()
+
+        if(!response.ok){
+            setIsPending(false)
+            console.log(json)
+        }
+
+        if(response.ok){
+            setIsPending(false)
+            console.log(json)
+        }
+
     }
 
     return ( 
@@ -51,6 +76,7 @@ const DepositForm = () => {
                     credit
                 </button>
             </form>
+            {isPending && <Loader/>}
         </div>
      );
 }
