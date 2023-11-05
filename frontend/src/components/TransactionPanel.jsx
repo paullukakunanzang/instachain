@@ -4,12 +4,14 @@ import { useState } from 'react';
 import FullScreenModal from './fullScreenModal';
 import { useAuthContext } from '../hooks/useAuthContext';
 import DepositForm from './DepositForm';
+import WithdrawalForm from './WithdrawalForm';
 
 const TransactionPanel = ({transactions=false}) => {
 
     const {user} = useAuthContext()
     const [modal, setModal] = useState(false)
     const [depositModal, setDepositModal] = useState(false)
+    const [withdrawalModal, setWithdrawalModal] = useState(false)
 
     return ( 
         <div className="flex flex-col w-full">
@@ -30,8 +32,8 @@ const TransactionPanel = ({transactions=false}) => {
 
                 <div className='p-3 bg-black rounded-md flex text-xs gap-x-2'>
                     {user && !user.data.isAdmin && <button onClick={()=>{setDepositModal(true)}} className='p-2 text-white rounded-md font-bold bg-[#18203A]'>Deposit</button>}
-                    <button onClick={()=>{setModal(true)}} className='p-2 text-white bg-[#18203A] rounded-md font-bold'>withdraw</button>
-                    <button className='p-2 text-white bg-[#18203A] rounded-md font-bold'>Invest</button>
+                    <button onClick={()=>{setWithdrawalModal(true)}} className='p-2 text-white bg-[#18203A] rounded-md font-bold'>withdraw</button>
+                    <button onClick={()=>{setModal(true)}} className='p-2 text-white bg-[#18203A] rounded-md font-bold'>Invest</button>
                 </div>
 
                 <div className='p-3 bg-black rounded-lg text-white'>
@@ -53,6 +55,7 @@ const TransactionPanel = ({transactions=false}) => {
             </div>    
               {modal && <FullScreenModal close={()=>{setModal(false)}}/>}  
               {depositModal && <FullScreenModal children={<DepositForm/>} close={()=>{setDepositModal(false)}}/>}  
+              {withdrawalModal && <FullScreenModal children={<WithdrawalForm/>} close={()=>{setWithdrawalModal(false)}}/>}  
         </div>
      );
 }
