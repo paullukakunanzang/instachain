@@ -72,7 +72,7 @@ const User = require('../models/user'),
 
             const user = await User.findOne({email})
 
-            return res.status.json({message: 'success', data: user})
+            return res.status(200).json({message: 'success', data: user})
             
         } catch (error) {
             return res.status(400).json({message: 'error', error: error.message})

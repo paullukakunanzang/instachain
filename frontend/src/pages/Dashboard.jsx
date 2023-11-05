@@ -1,6 +1,7 @@
 import { LineChart, TransactionPanel } from '../components';
 import {HiArrowTrendingUp} from 'react-icons/hi2'
 import { useAuthContext } from '../hooks/useAuthContext';
+import bg1 from '../assets/bitcoin1.png'
 
 const Dashboard = () => {
     const {user} = useAuthContext()
@@ -34,7 +35,7 @@ const Dashboard = () => {
 
                 {/* Third component */}
                 <div className='p-5 rounded bg-[#18203A] h-72'>
-
+                    <img src={bg1} className='' alt="" />
                 </div>
 
             </div>
