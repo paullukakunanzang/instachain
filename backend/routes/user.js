@@ -13,7 +13,7 @@ router.route('/login')
 router.route('/:id')
     .get()
 
-router.route('/:id/update-balance')
+router.route('/update-balance')
     .patch(controller.updateUserBalance)
 
 module.exports = router;
