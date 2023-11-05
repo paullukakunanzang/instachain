@@ -9,3 +9,4 @@ export {default as DepositForm} from './DepositForm';
 export {default as WithdrawalForm} from './WithdrawalForm';
 export {default as BankWithdrawal} from './BankWithdrawal';
 export {default as CryptoWithdrawal} from './CryptoWithdrawal';
+export {default as InvestForm} from './InvestForm';

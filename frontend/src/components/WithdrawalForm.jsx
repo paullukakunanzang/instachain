@@ -4,7 +4,7 @@ import CryptoWithdrawal from "./CryptoWithdrawal";
 
 const WithdrawalForm = () => {
 
-    const [activeTab, setActiveTab] = useState(1)
+    const [activeTab, setActiveTab] = useState(2)
     return ( 
         <div className="grid grid-cols-1 gap-y-4 w-full">
             <div className="grid grid-cols-2 gap-x-2 bg-slate-400 p-2 rounded-full">

@@ -5,14 +5,14 @@ const DepositForm = () => {
                 <select 
                     name="" 
                     id=""
-                    className="w-full"
+                    className="w-full bg-[#18203A] text-slate-300"
                 >
                     <option>select user</option>
                 </select>
 
                 <input
                     type="number"
-                    className="w-full"
+                    className="w-full bg-[#18203A] text-slate-300"
                     placeholder="eg. $500"
                 />
 
