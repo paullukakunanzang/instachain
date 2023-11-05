@@ -21,26 +21,25 @@ function App() {
       children: [
         {
           index: true,
-          element: user ? <Dashboard/> : <Navigate to={`/login`}/>
+          element: !user ? <HomePage/>: <Navigate to={`/${user.data.email}`}/>
         },
-        {
-          path: `/home`,
-          element: !user ? <HomePage/> : <Navigate to={`/`}/>
-        },
-
         {
           path: `/signup`,
-          element: !user ? <Signup/> : <Navigate to={`/`}/>
+          element: !user ? <Signup/> : <Navigate to={`/${user.data.email}`}/>
         },
 
         {
           path: `/login`,
-          element: !user ? <Login/> : <Navigate to={`/`}/>
+          element: !user ? <Login/> : <Navigate to={`/${user.data.email}`}/>
         },
 
         {
           path: `/verification`,
-          element: !user ? <Verification/> : <Navigate to={`/`}/>
+          element: !user ? <Verification/> : <Navigate to={`/${user.data.email}`}/>
+        },
+        {
+          path: `/:email`,
+          element: user ? <Dashboard/> : <Navigate to={`/login`}/>
         }
       ]
     }

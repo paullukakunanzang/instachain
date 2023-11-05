@@ -10,8 +10,8 @@ router.route('/')
 router.route('/login')
     .post(controller.login)    
 
-router.route('/:id')
-    .get()
+router.route('/:email')
+    .get(controller.getUserByEmail)
 
 router.route('/update-balance')
     .patch(controller.updateUserBalance)

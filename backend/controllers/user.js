@@ -66,6 +66,19 @@ const User = require('../models/user'),
         }
     }
 
+    exports.getUserByEmail = async (req, res) => {
+        try {
+            const {email} = req.params
+
+            const user = await User.findOne({email})
+
+            return res.status.json({message: 'success', data: user})
+            
+        } catch (error) {
+            return res.status(400).json({message: 'error', error: error.message})
+        }
+    }
+
     exports.updateUserBalance = async (req, res) => {
         try {
             

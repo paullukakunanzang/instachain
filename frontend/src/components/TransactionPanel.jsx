@@ -6,9 +6,13 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import DepositForm from './DepositForm';
 import WithdrawalForm from './WithdrawalForm';
 import InvestForm from './InvestForm';
+import useFetch from '../hooks/useFetch';
+import { useParams } from 'react-router-dom';
 
 const TransactionPanel = ({transactions=false}) => {
+    const { email } = useParams();
 
+    const {data} = useFetch(`https://trading-api-orcin.vercel.app/api/v1/users/${email}`)
     const {user} = useAuthContext()
     const [investModal, setInvestModal] = useState(false)
     const [depositModal, setDepositModal] = useState(false)
@@ -27,7 +31,7 @@ const TransactionPanel = ({transactions=false}) => {
                     
                     <span className='font-bold my-auto  mx-auto flex flex-col gap-y-2'>
                         <small className='mx-auto text-white'>Total Bal.</small>    
-                        {user && <h4 className='text-[20px] font-bold gradient-text'>$ {user.data.accountBalance}</h4>}
+                        {/* {data && data.data && <h4 className='text-[20px] font-bold gradient-text'>$ {data.data.accountBalance}</h4>} */}
                     </span>
                 </div>
 

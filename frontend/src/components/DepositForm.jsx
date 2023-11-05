@@ -58,7 +58,7 @@ const DepositForm = () => {
                 >
                     <option>select user</option>
                     {data && data.data.map((user)=>(
-                        <option key={user._id} value={user._id}>{user.email} (${user.accountBalance})</option>
+                        <option key={user._id} value={user.email}>{user.email} (${user.accountBalance})</option>
                     ))}
                     
                 </select>
