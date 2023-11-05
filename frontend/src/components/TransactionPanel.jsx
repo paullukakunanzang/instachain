@@ -28,7 +28,7 @@ const TransactionPanel = ({transactions=false}) => {
                     
                     <span className='font-bold my-auto  mx-auto flex flex-col gap-y-2'>
                         <small className='mx-auto text-white'>Total Bal.</small>    
-                        {data && data.data && <h4 className='text-[20px] font-bold gradient-text'>$ {data.data.email}</h4>}
+                        {data && data.data && <h4 className='text-[20px] font-bold gradient-text'>$ {data.data.accountBalance}</h4>}
                     </span>
                 </div>
 

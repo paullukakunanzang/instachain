@@ -90,7 +90,7 @@ const User = require('../models/user'),
                 throw new Error('user could not be found')
             }
 
-            let newAmount = foundUser.accountBalance + amount
+            let newAmount = Number(foundUser.accountBalance) + Number(amount)
 
             const updatedUser = await User.findByIdAndUpdate(foundUser.id, {accountBalance: newAmount})
 
