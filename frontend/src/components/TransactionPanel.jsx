@@ -1,4 +1,4 @@
-import {HiOutlineDocumentPlus} from 'react-icons/hi2';
+import {HiOutlineDocumentPlus, HiWallet} from 'react-icons/hi2';
 import img from '../assets/bitcoin1.png';
 import { useState } from 'react';
 import FullScreenModal from './fullScreenModal';
@@ -7,8 +7,11 @@ import DepositForm from './DepositForm';
 import WithdrawalForm from './WithdrawalForm';
 import InvestForm from './InvestForm';
 import useFetch from '../hooks/useFetch';
+import { formatCurrency } from '../utils/helpers';
+import img2 from '../assets/barcode.jpg';
 
-const TransactionPanel = ({transactions=false}) => {
+
+const TransactionPanel = ({transactions=true}) => {
     const {user} = useAuthContext()
     const {data} = useFetch(`https://trading-api-orcin.vercel.app/api/v1/users/${user.data.email}`)
     const [investModal, setInvestModal] = useState(false)
@@ -17,18 +20,19 @@ const TransactionPanel = ({transactions=false}) => {
 
     return ( 
         <div className="flex flex-col w-full">
-            <h4 className='text-white font-semibold hidden md:flex md:text-xl'>My Wallet</h4>
+            <h4 className='text-slate-400 p-2 w-full font-semibold text-center md:flex md:text-sm'>My Wallet</h4>
+            
             <div className="border-slate-50 rounded bg-[#18203A] flex flex-col p-5 items-center gap-y-4">
                 <div className='auto rounded-full flex gap-x-2 p-2 bg-slate-300 '>
                     <button className='bg-slate-400 rounded-lg text-slate-100 px-2'>withdrawals</button>
                     <button className='bg-purple-400 font-bold text-purple-100 rounded-lg px-2'>Stake</button>
                 </div>
 
-                <div className='border-t-4 border-x-4  p-5 w-[150px] h-[150px] rounded-full flex flex-col border-slate-400 '>
+                <div className=' p-5 rounded-full flex flex-col border-slate-400 '>
                     
                     <span className='font-bold my-auto  mx-auto flex flex-col gap-y-2'>
-                        <small className='mx-auto text-white'>Total Bal.</small>    
-                        {data && data.data && <h4 className='text-[20px] font-bold gradient-text'>$ {data.data.accountBalance}</h4>}
+                        <small className='mx-auto text-white gradient-text'>Total Balance</small>    
+                        {data && data.data && <h4 className='text-[15px] font-bold text-slate-100'>{formatCurrency(data.data.accountBalance)}</h4>}
                     </span>
                 </div>
 
@@ -38,10 +42,15 @@ const TransactionPanel = ({transactions=false}) => {
                     <button onClick={()=>{setInvestModal(true)}} className='p-2 text-white bg-[#18203A] rounded-md font-bold'>Invest</button>
                 </div>
 
+                <span className='text-white flex flex-col text-center'>
+                      <small className='flex items-center gap-x-2 text-slate-400'><HiWallet/> wallet </small>  
+                    <small className='text-[10px]'>bc1qzpk95lq5ks75u5k8mpwf0pluvuu5gdt7nd32qq</small>
+                </span>
                 <div className='p-3 bg-black rounded-lg text-white'>
+                    
                     {
                         transactions ?
-                        (``)
+                        (<img src={img2} className='' alt="" />)
                         :
                         (
                             <div className='flex flex-col items-center gap-y-4'>

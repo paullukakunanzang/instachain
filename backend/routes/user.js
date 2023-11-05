@@ -10,6 +10,9 @@ router.route('/')
 router.route('/login')
     .post(controller.login)    
 
+router.route('/:id')
+    .patch(controller.updateStatus)
+
 router.route('/:email')
     .get(controller.getUserByEmail)
 

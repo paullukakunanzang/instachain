@@ -12,6 +12,10 @@
     font-family: Nunito;
 }
 
+.text-A{
+    font-family: Agbalumo;
+}
+
 .gradient-text {
     background-clip: text;
     -webkit-background-clip: text;

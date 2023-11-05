@@ -30,12 +30,12 @@ const FormContainer = ({page="signup"}) => {
         
         if(page == 'signup') {
             await signup(email, password)
-            Navigate(`/${email}`)
+            Navigate(`/dashboard`)
         }
 
         else if(page == 'Login') {
             await login(email, password)
-            Navigate(`/${email}`)
+            Navigate(`/dashboard`)
         }
     }
     

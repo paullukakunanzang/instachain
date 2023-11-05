@@ -1,7 +1,7 @@
 import { LineChart, TransactionPanel } from '../components';
 import {HiArrowTrendingUp} from 'react-icons/hi2'
 import { useAuthContext } from '../hooks/useAuthContext';
-import bg1 from '../assets/bitcoin1.png'
+import bg1 from '../assets/bg2.svg'
 
 const Dashboard = () => {
     const {user} = useAuthContext()
@@ -18,6 +18,12 @@ const Dashboard = () => {
                     
                 </div> */}
                 {/* second component */}
+                <h4 className='text-slate-100 md:flex hidden'>Welcome, {user && <span>{user.data.email}</span>}</h4>
+                 {/* Third component */}
+                 <div className='p-5 rounded bg-[#18203A] grid grid-cols-1 md:grid-cols-3 h-72'>
+                    <h4 className='text-slate-400 text-[12px] md:text-[20px] text-A md:leading-[50px] leading-[20px]  text-center'>Leaveraging on the power of <span className=''> lightening network</span>, get credited <span className=''>anywhere </span>!</h4>
+                    <img src={bg1} className='md:col-span-2' alt="" />
+                </div>
                 <div className='md:p-5 p-2 flex flex-col rounded bg-[#18203A] h-72 gap-y-2'>
                     <div className='flex'>
                         <span className='p-1 text-xs text-slate-100'>
@@ -33,10 +39,7 @@ const Dashboard = () => {
                     
                 </div>
 
-                {/* Third component */}
-                <div className='p-5 rounded bg-[#18203A] h-72'>
-                    <img src={bg1} className='' alt="" />
-                </div>
+               
 
             </div>
 

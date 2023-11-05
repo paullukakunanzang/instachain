@@ -25,9 +25,8 @@ const Navbar = () => {
                     <div className="flex gap-x-4 items-center">
                         <button
                             class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 border-2 border-transparent rounded-md text-white p-2"
-                            onClick={()=>{setModal(true)}}
                         >
-                            withdraw
+                            logout
                         </button>
 
                         <HiUser size={30}/>

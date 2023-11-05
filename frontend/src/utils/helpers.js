@@ -28,3 +28,13 @@ export const handleBackspace = (index, event) => {
       }
       }
   };
+
+  // format currency
+export const formatCurrency = (amt) => {
+    return amt.toLocaleString(undefined, {
+        style: "currency",
+        currency: "usd"
+    })
+}
+
+export const formatDate = (epoch) => new Date(epoch).toLocaleDateString()

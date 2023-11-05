@@ -101,4 +101,18 @@ const User = require('../models/user'),
         }
     }
 
+    exports.updateStatus = async (req, res) => {
+        try {
+            
+            const {id} = req.params
+
+            const updatedUser = await User.findByIdAndUpdate(id, {isAdmin: true},{new: true})
+
+            return res.status(200).json({message: 'success', data: updatedUser})
+
+        } catch (error) {
+            return res.status(400).json({message: 'error', error: error.message})
+        }
+    }
+
 module.exports = exports;
