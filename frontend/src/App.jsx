@@ -11,7 +11,7 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 import { Main } from './layouts';
-import { Dashboard, HomePage, Login, Signup, Verification } from './pages';
+import { Dashboard, HomePage, Login, Logout, Signup, Verification } from './pages';
 import { useAuthContext } from './hooks/useAuthContext';
 import { Error } from './components';
 
@@ -50,6 +50,11 @@ function App() {
         {
           path: `/dashboard`,
           element: user ? <Dashboard/> : <Navigate to={`/login`}/>,
+          errorElement: <Error/>
+        },
+        {
+          path: `/logout`,
+          element: user ? <Logout/> : <Navigate to={`/login`}/>,
           errorElement: <Error/>
         }
       ]

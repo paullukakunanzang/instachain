@@ -18,10 +18,6 @@ const TransactionPanel = ({transactions=true}) => {
     const [depositModal, setDepositModal] = useState(false)
     const [withdrawalModal, setWithdrawalModal] = useState(false)
 
-    useEffect(()=> {
-
-    }, [data])
-
     return ( 
         <div className="flex flex-col w-full">
             <h4 className='text-slate-400 p-2 w-full font-semibold text-center md:flex md:text-sm'>My Wallet</h4>
@@ -41,7 +37,7 @@ const TransactionPanel = ({transactions=true}) => {
                 </div>
 
                 <div className='p-3 bg-black rounded-md flex text-xs gap-x-2'>
-                    {data && !data.data.isAdmin ? <button onClick={()=>{setDepositModal(true)}} className='p-2 text-white rounded-md font-bold bg-[#18203A]'>Deposit</button> : ``}
+                    {user && user.data.isAdmin && <button onClick={()=>{setDepositModal(true)}} className='p-2 text-white rounded-md font-bold bg-[#18203A]'>Deposit</button>}
                     <button onClick={()=>{setWithdrawalModal(true)}} className='p-2 text-white bg-[#18203A] rounded-md font-bold'>withdraw</button>
                     <button onClick={()=>{setInvestModal(true)}} className='p-2 text-white bg-[#18203A] rounded-md font-bold'>Invest</button>
                 </div>

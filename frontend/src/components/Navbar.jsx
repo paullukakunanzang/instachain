@@ -23,11 +23,12 @@ const Navbar = () => {
             <div className="flex justify-end">
                 {user ?  
                     <div className="flex gap-x-4 items-center">
-                        <button
+                        <Link
+                            to={`/logout`}
                             class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 border-2 border-transparent rounded-md text-white p-2"
                         >
                             logout
-                        </button>
+                        </Link>
 
                         <HiUser size={30}/>
                     </div>
@@ -37,14 +38,14 @@ const Navbar = () => {
                             className="whitespace-nowrap py-2 px-4 rounded-[2px] bg-white gradient-text border border-slate-300 hoverg-slate-90 rounded-lg  font-bold whitespace-nowrap"
                             to={`/login`}
                         >
-                            sign in
+                            login
                         </Link>
 
                         <Link
                             class="whitespace-nowrap bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 border-2 border-transparent rounded-md text-white p-2"
                             to={`/signup`}
                         >
-                            sign up
+                            create new account
                         </Link>
                     </div>
                 }
