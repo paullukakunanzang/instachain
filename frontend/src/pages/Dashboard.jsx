@@ -24,7 +24,7 @@ const Dashboard = () => {
                     <h4 className='text-slate-400 text-[12px] md:text-[20px] text-A md:leading-[50px] leading-[20px]  text-center'>Leaveraging on the power of <span className=''> lightening network</span>, get credited <span className=''>anywhere </span>!</h4>
                     <img src={bg1} className='md:col-span-2' alt="" />
                 </div>
-                <div className='md:p-5 p-2 flex flex-col rounded bg-[#18203A] h-72 gap-y-2'>
+                <div className='flex flex-col rounded bg-[#18203A] h-72 gap-y-2'>
                     <div className='flex'>
                         <span className='p-1 text-xs text-slate-100'>
                             <h4>Painting the picture</h4>

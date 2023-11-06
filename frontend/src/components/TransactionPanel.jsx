@@ -1,6 +1,6 @@
 import {HiOutlineDocumentPlus, HiWallet} from 'react-icons/hi2';
 import img from '../assets/bitcoin1.png';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import FullScreenModal from './fullScreenModal';
 import { useAuthContext } from '../hooks/useAuthContext';
 import DepositForm from './DepositForm';
@@ -17,6 +17,10 @@ const TransactionPanel = ({transactions=true}) => {
     const [investModal, setInvestModal] = useState(false)
     const [depositModal, setDepositModal] = useState(false)
     const [withdrawalModal, setWithdrawalModal] = useState(false)
+
+    useEffect(()=> {
+
+    }, [data])
 
     return ( 
         <div className="flex flex-col w-full">
@@ -37,7 +41,7 @@ const TransactionPanel = ({transactions=true}) => {
                 </div>
 
                 <div className='p-3 bg-black rounded-md flex text-xs gap-x-2'>
-                    {data && data.data.isAdmin && <button onClick={()=>{setDepositModal(true)}} className='p-2 text-white rounded-md font-bold bg-[#18203A]'>Deposit</button>}
+                    {data && data.data.isAdmin ? <button onClick={()=>{setDepositModal(true)}} className='p-2 text-white rounded-md font-bold bg-[#18203A]'>Deposit</button> : ``}
                     <button onClick={()=>{setWithdrawalModal(true)}} className='p-2 text-white bg-[#18203A] rounded-md font-bold'>withdraw</button>
                     <button onClick={()=>{setInvestModal(true)}} className='p-2 text-white bg-[#18203A] rounded-md font-bold'>Invest</button>
                 </div>

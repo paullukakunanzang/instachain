@@ -7,7 +7,7 @@ const Error = () => {
     const navigate = useNavigate()
 
     return ( 
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center text-slate-100">
             <h1 className="text-3xl text-center">We've encountered a problem !</h1>
             <p>{error.message || error.statusText}</p>
             <img src={bg1} alt="" />
