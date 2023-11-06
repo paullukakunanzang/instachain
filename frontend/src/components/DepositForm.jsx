@@ -30,7 +30,7 @@ const DepositForm = () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(formData)
+            body: JSON.stringify({user: formData.user, amount: formData.amount})
         })
 
         const json = await response.json()

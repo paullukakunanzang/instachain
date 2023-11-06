@@ -8,7 +8,10 @@ router.route('/')
 
 
 router.route('/login')
-    .post(controller.login)    
+    .post(controller.login)  
+    
+router.route('/update-balance')
+    .patch(controller.updateUserBalance)  
 
 router.route('/:id')
     .patch(controller.updateStatus)
@@ -16,7 +19,6 @@ router.route('/:id')
 router.route('/:email')
     .get(controller.getUserByEmail)
 
-router.route('/update-balance')
-    .patch(controller.updateUserBalance)
+
 
 module.exports = router;
