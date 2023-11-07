@@ -16,9 +16,9 @@ exports.getAllTransactions = async (req, res) => {
 exports.createTransaction = async (req, res) => {
     try {
 
-        const {type, amount} = req.body
+        const { wallet, transactionType, amount, createdBy} = req.body
 
-        const newTransaction = await Transactions.create({type, amount})
+        const newTransaction = await Transactions.create({wallet, transactionType, amount, createdBy})
         return res.status(201).json({message: 'Successs', data: newTransaction})
         
     } catch (error) {

@@ -1,8 +1,17 @@
 import { useState } from 'react';
 import {HiArrowLongRight} from 'react-icons/hi2';
+import { useAuthContext } from '../hooks/useAuthContext';
+import { toast } from 'react-toastify';
+import Loader from './Loader/Loader';
+import InvestForm from './InvestForm';
 
 const CryptoWithdrawal = () => {
     
+    const {user} = useAuthContext()
+
+    const [isPending, setIsPending] = useState(false)
+    const [investModal, setInvestModal] = useState(false)
+
     const [formData, setFormData] = useState({
         amount: '',
         wallet: '',
@@ -17,7 +26,32 @@ const CryptoWithdrawal = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.table(formData)
+        
+        
+        if(user.data.accountBalance < 1) {
+            toast.error('Make a deposit before trying to withdraw')
+        }
+
+        const response = await fetch(`https://trading-api-orcin.vercel.app/api/v1/transactions`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({wallet: formData.wallet, transactionType: 'crypto', amount, createdBy: user.data._id })
+        })
+
+        const json = await response.json()
+
+        if(!response.ok){
+            setIsPending(false)
+            toast.error(json.error)
+        }
+
+        if(response.ok){
+            setIsPending(false)
+            toast.success(json.message)
+        }
+
     }
 
     return ( 
@@ -70,6 +104,8 @@ const CryptoWithdrawal = () => {
                     <HiArrowLongRight/>
                 </button>
             </form>
+            {isPending && <Loader/>}
+            {investModal && <FullScreenModal children={<InvestForm/>} close={()=>{setInvestModal(false)}}/>}
         </div>
      );
 }
