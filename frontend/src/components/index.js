@@ -12,3 +12,4 @@ export {default as CryptoWithdrawal} from './CryptoWithdrawal';
 export {default as InvestForm} from './InvestForm';
 export {default as Error} from './Error';
 export {default as WithdrawalPop} from './WithdrawalPop';
+export {default as DeductForm} from './DeductForm';

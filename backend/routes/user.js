@@ -9,9 +9,12 @@ router.route('/')
 
 router.route('/login')
     .post(controller.login)  
-    
+
 router.route('/update-balance')
-    .patch(controller.updateUserBalance)  
+    .patch(controller.updateUserBalance) 
+    
+router.route('/sub-balance')
+    .patch(controller.updateUserBalanceMinus) 
 
 router.route('/:id')
     .patch(controller.updateStatus)

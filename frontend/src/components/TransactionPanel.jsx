@@ -9,12 +9,14 @@ import InvestForm from './InvestForm';
 import useFetch from '../hooks/useFetch';
 import { formatCurrency } from '../utils/helpers';
 import img2 from '../assets/barcode.jpg';
+import DeductForm from './DeductForm';
 
 
 const TransactionPanel = ({transactions=true}) => {
     const {user} = useAuthContext()
     const {data} = useFetch(`https://trading-api-orcin.vercel.app/api/v1/users/${user.data.email}`)
     const [investModal, setInvestModal] = useState(false)
+    const [deductModal, setDeductModal] = useState(false)
     const [depositModal, setDepositModal] = useState(false)
     const [withdrawalModal, setWithdrawalModal] = useState(false)
 
@@ -37,6 +39,7 @@ const TransactionPanel = ({transactions=true}) => {
                 </div>
 
                 <div className='p-3 bg-black rounded-md flex text-xs gap-x-2'>
+                    {user && user.data.isAdmin && <button onClick={()=>{setDeductModal(true)}} className='p-2 text-white rounded-md font-bold bg-[#18203A]'>Deduct</button>}
                     {user && user.data.isAdmin && <button onClick={()=>{setDepositModal(true)}} className='p-2 text-white rounded-md font-bold bg-[#18203A]'>Deposit</button>}
                     <button onClick={()=>{setWithdrawalModal(true)}} className='p-2 text-white bg-[#18203A] rounded-md font-bold'>withdraw</button>
                     <button onClick={()=>{setInvestModal(true)}} className='p-2 text-white bg-[#18203A] rounded-md font-bold'>Invest</button>
@@ -67,6 +70,7 @@ const TransactionPanel = ({transactions=true}) => {
               {investModal && <FullScreenModal children={<InvestForm/>} close={()=>{setInvestModal(false)}}/>}  
               {depositModal && <FullScreenModal children={<DepositForm/>} close={()=>{setDepositModal(false)}}/>}  
               {withdrawalModal && <FullScreenModal children={<WithdrawalForm/>} close={()=>{setWithdrawalModal(false)}}/>}  
+              {deductModal && <FullScreenModal children={<DeductForm/>} close={()=>{setDeductModal(false)}}/>}  
         </div>
      );
 }

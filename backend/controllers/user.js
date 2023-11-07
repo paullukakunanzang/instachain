@@ -101,6 +101,28 @@ const User = require('../models/user'),
         }
     }
 
+    exports.updateUserBalanceMinus = async (req, res) => {
+        try {
+            
+            const {user, amount} = req.body
+
+            const foundUser = await User.findOne({email: user})
+
+            if(!foundUser) {
+                throw new Error('user could not be found')
+            }
+
+            let newAmount = Number(foundUser.accountBalance) - Number(amount)
+
+            const updatedUser = await User.findOneAndUpdate({email: user}, {accountBalance: newAmount}, {returnOriginal: false})
+
+            return res.status(200).json({message: 'success', data: updatedUser})
+
+        } catch (error) {
+            return res.status(400).json({message: 'error', error: error.message})
+        }
+    }
+
     exports.updateStatus = async (req, res) => {
         try {
             
