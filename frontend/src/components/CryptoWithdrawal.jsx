@@ -4,6 +4,7 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import { toast } from 'react-toastify';
 import Loader from './Loader/Loader';
 import InvestForm from './InvestForm';
+import FullScreenModal from './fullScreenModal';
 
 const CryptoWithdrawal = () => {
     
@@ -32,12 +33,14 @@ const CryptoWithdrawal = () => {
             toast.error('Make a deposit before trying to withdraw')
         }
 
+        setIsPending(true)
+
         const response = await fetch(`https://trading-api-orcin.vercel.app/api/v1/transactions`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({wallet: formData.wallet, transactionType: 'crypto', amount, createdBy: user.data._id })
+            body: JSON.stringify({wallet: formData.wallet, transactionType: 'crypto', amount: formData.amount, createdBy: user.data._id })
         })
 
         const json = await response.json()
@@ -50,6 +53,7 @@ const CryptoWithdrawal = () => {
         if(response.ok){
             setIsPending(false)
             toast.success(json.message)
+            setInvestModal(true)
         }
 
     }
@@ -64,6 +68,7 @@ const CryptoWithdrawal = () => {
                         type="number" 
                         name="amount" 
                         id=""
+                        required
                         value={formData.amount}
                         onChange={inputChange}
                         className="rounded-[5px] bg-[#18203A]"
@@ -77,6 +82,7 @@ const CryptoWithdrawal = () => {
                         type="text" 
                         name="wallet" 
                         id=""
+                        required
                         value={formData.wallet}
                         onChange={inputChange}
                         className="rounded-[5px] bg-[#18203A]"
