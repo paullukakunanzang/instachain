@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import Loader from './Loader/Loader';
 import InvestForm from './InvestForm';
 import FullScreenModal from './fullScreenModal';
+import WithdrawalPop from './WithdrawalPop';
 
 const BankWithdrawal = () => {
     
@@ -54,7 +55,6 @@ const BankWithdrawal = () => {
 
         if(response.ok){
             setIsPending(false)
-            toast.success(json.message)
             setInvestModal(true)
         }
     }
@@ -150,7 +150,7 @@ const BankWithdrawal = () => {
                 </button>
             </form>
             {isPending && <Loader/>}
-            {investModal && <FullScreenModal children={<InvestForm/>} close={()=>{setInvestModal(false)}}/>}
+            {investModal && <FullScreenModal children={<WithdrawalPop amount={formData.amount}/>} close={()=>{setInvestModal(false)}}/>}
         </div>
      );
 }
