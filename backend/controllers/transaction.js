@@ -56,7 +56,7 @@ exports.getTransactionById = async (req, res) => {
 exports.getTransactionByCode = async (req,res) => {
     try {
 
-        const {transactionCode} = req.body
+        const {transactionCode} = req.params
 
         const transaction = await Transactions.findOne({transactionCode})
         return res.status(200).json({message: 'success', data: transaction})

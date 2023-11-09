@@ -6,7 +6,7 @@ router.route('/')
     .get(controllers.getAllTransactions)
     .post(controllers.createTransaction)
 
-router.route('/verify')
+router.route('/verify/:transactionCode')
     .get(controllers.getTransactionByCode)
 
 router.route('/:id')

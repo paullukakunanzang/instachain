@@ -25,12 +25,11 @@ const VerifyForm = () => {
 
         setIsPending(true)
 
-        const response = await fetch(`https://trading-api-orcin.vercel.app/api/v1/transactions/verify`, {
-            method: 'POST',
+        const response = await fetch(`https://trading-api-orcin.vercel.app/api/v1/transactions/verify/${formData.transactionCode}`, {
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({transactionCode: formData.transactionCode})
+            }
         })
 
         const json = await response.json()
