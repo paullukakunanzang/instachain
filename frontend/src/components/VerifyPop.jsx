@@ -12,12 +12,12 @@ const VerifyPop = ({amount}) => {
 
             <span className='text-white flex flex-col text-center gap-x-4'>
                 <small className='items-center gap-x-2 text-slate-400'>Withdrawal Amount</small>  
-                <small className='text-[15px] text-slate-100'>{formatCurrency(1330)}</small>
+                <small className='text-[15px] text-slate-100'>{formatCurrency(amount)}</small>
             </span>
 
             <span className='text-white flex flex-col text-center gap-x-4'>
-                <small className='items-center gap-x-2 text-slate-400'>Transaction Fee</small>  
-                <small className='text-[15px] text-slate-100'>{formatCurrency(1330)}</small>
+                <small className='items-center gap-x-2 text-amber-400'>Transaction Fee paid</small>  
+                <small className='text-[10px] text-slate-300'>{formatCurrency((amount * 15) / 100)}</small>
             </span>
            
         </div>

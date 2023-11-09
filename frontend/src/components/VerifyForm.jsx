@@ -41,7 +41,7 @@ const VerifyForm = () => {
 
         if(response.ok){
             setIsPending(false)
-            setData(json.data)
+            setData(json.data.amount)
             setVerificationModal(true)
         }
     }
