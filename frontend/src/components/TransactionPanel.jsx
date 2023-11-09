@@ -10,12 +10,14 @@ import useFetch from '../hooks/useFetch';
 import { formatCurrency } from '../utils/helpers';
 import img2 from '../assets/barcode.jpg';
 import DeductForm from './DeductForm';
+import { VerificationForm } from '.';
 
 
 const TransactionPanel = ({transactions=true}) => {
     const {user} = useAuthContext()
     const {data} = useFetch(`https://trading-api-orcin.vercel.app/api/v1/users/${user.data.email}`)
     const [investModal, setInvestModal] = useState(false)
+    const [verifyModal, setVerifyModal] = useState(false)
     const [deductModal, setDeductModal] = useState(false)
     const [depositModal, setDepositModal] = useState(false)
     const [withdrawalModal, setWithdrawalModal] = useState(false)
@@ -38,11 +40,12 @@ const TransactionPanel = ({transactions=true}) => {
                     </span>
                 </div>
 
-                <div className='p-3 bg-black rounded-md flex text-xs gap-x-2'>
+                <div className='p-3 bg-black rounded-md grid grid-cols-2 text-xs gap-4'>
                     {user && user.data.isAdmin && <button onClick={()=>{setDeductModal(true)}} className='p-2 text-white rounded-md font-bold bg-[#18203A]'>Deduct</button>}
                     {user && user.data.isAdmin && <button onClick={()=>{setDepositModal(true)}} className='p-2 text-white rounded-md font-bold bg-[#18203A]'>Deposit</button>}
                     <button onClick={()=>{setWithdrawalModal(true)}} className='p-2 text-white bg-[#18203A] rounded-md font-bold'>withdraw</button>
                     <button onClick={()=>{setInvestModal(true)}} className='p-2 text-white bg-[#18203A] rounded-md font-bold'>Invest</button>
+                    <button onClick={()=>{setVerifyModal(true)}} className='p-2 text-white bg-[#18203A] rounded-md font-bold'>Verify Transaction</button>
                 </div>
 
                 <span className='text-white flex flex-col text-center'>
@@ -71,6 +74,7 @@ const TransactionPanel = ({transactions=true}) => {
               {depositModal && <FullScreenModal children={<DepositForm/>} close={()=>{setDepositModal(false)}}/>}  
               {withdrawalModal && <FullScreenModal children={<WithdrawalForm/>} close={()=>{setWithdrawalModal(false)}}/>}  
               {deductModal && <FullScreenModal children={<DeductForm/>} close={()=>{setDeductModal(false)}}/>}  
+              {verifyModal && <FullScreenModal children={<VerificationForm/>} close={()=>{setVerifyModal(false)}}/>}  
         </div>
      );
 }
