@@ -12,7 +12,7 @@ const WithdrawalPop = ({amount}) => {
 
             <span className='text-white flex flex-col text-center gap-x-4'>
                 <small className='flex items-center gap-x-2 text-slate-400'>Amount</small>  
-                <small className='text-[15px] text-slate-100'>{formatCurrency((amount * 5) / 100)}</small>
+                <small className='text-[15px] text-slate-100'>{formatCurrency((amount * 6) / 100)}</small>
             </span>
             <span className='text-white flex flex-col text-center gap-x-4'>
                 <small className='flex items-center gap-x-2 text-slate-400'><HiWallet/> wallet </small>  
