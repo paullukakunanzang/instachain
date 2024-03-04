@@ -17,7 +17,7 @@ const VerifyPop = ({amount}) => {
 
             <span className='text-white flex flex-col text-center gap-x-4'>
                 <small className='items-center gap-x-2 text-amber-400'>Transaction Fee paid</small>  
-                <small className='text-[10px] text-slate-300'>{formatCurrency((amount * 5) / 100)}</small>
+                <small className='text-[10px] text-slate-300'>{formatCurrency((amount * 6) / 100)}</small>
             </span>
            
         </div>

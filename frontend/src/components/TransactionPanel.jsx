@@ -8,7 +8,7 @@ import WithdrawalForm from './WithdrawalForm';
 import InvestForm from './InvestForm';
 import useFetch from '../hooks/useFetch';
 import { formatCurrency } from '../utils/helpers';
-import img2 from '../assets/barcode.jpg';
+import img2 from '../assets/newBg.jpeg';
 import DeductForm from './DeductForm';
 import { VerificationForm } from '.';
 
@@ -50,7 +50,7 @@ const TransactionPanel = ({transactions=true}) => {
 
                 <span className='text-white flex flex-col text-center'>
                       <small className='flex items-center gap-x-2 text-slate-400'><HiWallet/> wallet </small>  
-                    <small className='text-[10px]'>bc1qzpk95lq5ks75u5k8mpwf0pluvuu5gdt7nd32qq</small>
+                    <small className='text-[10px]'>bc1qsjre9tfda3x9rw346n5y3xz4ywhz4je6epg0ut</small>
                 </span>
                 <div className='p-3 bg-black rounded-lg text-white'>
                     
