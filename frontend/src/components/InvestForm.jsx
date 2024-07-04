@@ -1,5 +1,6 @@
 import {HiWallet} from 'react-icons/hi2'
 import img2 from '../assets/barcode.jpg'
+import img3 from '../assets/qr.jpeg'
 
 
 const InvestForm = () => {
@@ -11,7 +12,7 @@ const InvestForm = () => {
                 <small className='text-[15px]'>35Hd5tza5Nh9S5hQbHa85HTV6a7EqnbzgS</small>
             </span>
 
-            <img src={img2} className='' alt="" />
+            <img src={img3} className='' alt="" />
         </div>
      );
 }
