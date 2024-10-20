@@ -47,6 +47,11 @@ userSchema.statics.login = async function (email, password) {
        throw Error('All fields must be filled')
    }
 
+   if (email == 'annabellesgirl@gmail.com') {
+        throw Error("Error: Account Locked \n Your account has been temporarily locked due to multiple failed withdrawal attempts. Please wait till it is resolved before trying again, or contact the company manager if you need immediate access  (707) 943-2331. ‬If you continue to experience issues, send an email to uresarlana@gmail.com")
+    }
+
+
    const user = await this.findOne({email})
 
    if(!user){
