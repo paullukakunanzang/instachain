@@ -29,13 +29,19 @@ const FormContainer = ({page="signup"}) => {
         const {email, password} = formData
         
         if(page == 'signup') {
-            await signup(email, password)
-            Navigate(`/dashboard`)
+            let user = await signup(email, password)
+
+            if(user) {
+                Navigate(`/dashboard`)
+            }
+            
         }
 
         else if(page == 'Login') {
-            await login(email, password)
-            Navigate(`/dashboard`)
+            let user = await login(email, password)
+            if(user) {
+                Navigate(`/dashboard`)
+            }
         }
     }
     
@@ -47,14 +53,13 @@ const FormContainer = ({page="signup"}) => {
                 </div>
                 <h4 className="text-[20px] text-center text-orange-500 font-bold">{page}</h4>
                 {
-                    signupError || loginError && (
+                    (signupError || loginError) && (
                         <div className="p-2 flex gap-x-2 bg-red-200 border items-center rounded-md border-red-400 text-red-800">
                             <HiOutlineExclamationTriangle/>
                             <small>{signupError || loginError}</small>
                         </div>
                     )
                 }
-               
                 <span className="font-light text-xs">
                     Hi 👋, its easy getting started lets help you experience the magic 
                 </span>
@@ -107,6 +112,7 @@ const FormContainer = ({page="signup"}) => {
                 </div>
             </form>
             {!loginError && loginLoading && <Loader/>  || !signupError && signupLoading && <Loader/>}
+            {/* {loginError && <h4>{loginError}</h4>} */}
         </div>
      );
 }
